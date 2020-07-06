@@ -1,0 +1,119 @@
+/* 
+  Color Palette 
+  i) #1A1A1D
+  ii) #4E4E50
+  iii)#6F2232
+  iv) #950740
+  v) #C3073F;
+   */
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #1A1A1D;
+  color: #fff;
+  font-family: 'Rubik', sans-serif;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+
+}
+
+.container {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+h1 {
+  font-size: 50px;
+  text-decoration: underline;
+  text-decoration-color: #C3073F;
+  padding: 2rem;
+  transform: skewY(-2deg)
+}
+
+.todo-list {
+  border: 5px solid #4E4E50;
+  min-height: 400px;
+  border-radius: .5em;
+}
+
+.todo-input-section {
+  padding: 2rem;
+}
+
+#btn-add,
+input {
+  padding: .5rem 1rem;
+  border-radius: .3em;
+  outline: none;
+  border: none;
+  font-size: 18px;
+}
+
+#btn-add {
+  background-color: #1A1A1D;
+  color: #fff;
+  border: 2px #C3073F solid;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+#btn-add:hover,
+#btn-add:focus {
+  background-color: #212121;
+}
+
+.item-container {
+  border-top: 5px solid #4E4E50;
+  margin: 0
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  font-size: 22px;
+  width: 92%;
+  border-bottom: 1px solid #4E4E50;
+}
+
+.item:last-of-type {
+  border-bottom: none;
+
+}
+
+.btn-delete {
+  justify-self: end;
+  color: #C3073F;
+  background-color: #1A1A1D;
+  cursor: pointer;
+  border: none;
+  padding: 6px;
+}
+
+.btn-delete:hover {
+  border: none;
+  background-color: #C3073F;
+  color: #1A1A1D;
+  border-radius: 50%;
+}
+
+.btn-delete:focus {
+  outline: none;
+}
+
+.item input.checkbox {
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  margin-right: .5rem;
+  cursor: pointer;
+}
