@@ -84,8 +84,8 @@ var todoList = function () {
         httpRequest.open(
           "PUT",
           "https://altcademy-to-do-list-api.herokuapp.com/tasks/" +
-            itemID +
-            "/mark_complete?api_key=170"
+          itemID +
+          "/mark_complete?api_key=170"
         );
         console.log("marked complete");
       } else {
@@ -93,8 +93,8 @@ var todoList = function () {
         httpRequest.open(
           "PUT",
           "https://altcademy-to-do-list-api.herokuapp.com/tasks/" +
-            itemID +
-            "/mark_active?api_key=170"
+          itemID +
+          "/mark_active?api_key=170"
         );
         console.log("marked active");
       }
@@ -166,8 +166,8 @@ var todoList = function () {
       httpRequest.open(
         "DELETE",
         "https://altcademy-to-do-list-api.herokuapp.com/tasks/" +
-          itemID +
-          "?api_key=170"
+        itemID +
+        "?api_key=170"
       );
 
       httpRequest.send();
@@ -177,7 +177,10 @@ var todoList = function () {
     };
 
     // Event Handler for Add Button - add new item to list if input field is populated
-    addButton.addEventListener("click", addItem);
+    addButton.addEventListener("click", function () {
+      addItem();
+      e.preventDefault()
+    });
 
     // Event Listener for Complete Buttons
     completeButtons.forEach(function (button) {
