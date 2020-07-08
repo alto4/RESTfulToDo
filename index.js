@@ -177,9 +177,8 @@ var todoList = function () {
     };
 
     // Event Handler for Add Button - add new item to list if input field is populated
-    addButton.addEventListener("click", function () {
+    addButton.addEventListener("click", function (e) {
       addItem();
-      e.preventDefault()
     });
 
     // Event Listener for Complete Buttons

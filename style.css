@@ -49,7 +49,7 @@ h1 {
 }
 
 #btn-add,
-input {
+input.task-input {
   padding: .5rem 1rem;
   border-radius: .3em;
   outline: none;
@@ -120,4 +120,17 @@ span.checked {
   border-radius: 50%;
   margin-right: .5rem;
   cursor: pointer;
+}
+
+@media(max-width: 540px) {
+  .container {
+    width: 90%;
+    margin-top: 1rem;
+  }
+
+  #btn-add,
+  input.task-input {
+    width: 90%;
+    margin: .5rem auto;
+  }
 }
