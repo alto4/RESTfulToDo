@@ -2,17 +2,21 @@ var todoList = function () {
   // DOM Variable Declarations
   var itemContainer = document.querySelector(".item-container");
 
-  // Event Handler for Request Load - get tasks from the ATDAPI and render them in the DOM
+  // populateList Function - get tasks from the ATDAPI and render them in the DOM
   var populateList = function () {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onload = function () {
       if (httpRequest.readyState === XMLHttpRequest.DONE) {
+
         // Upon successful request, parse data into JS object for processing
         if (httpRequest.status === 200) {
           var items = JSON.parse(httpRequest.responseText)["tasks"];
           itemContainer.innerHTML = "";
+
+          // Create individual row for each item in the DOM
           items.forEach(function (item) {
-            // Create individual row for each item in the DOM
+
+            // Check for complete/active status to display accurately in the DOM
             var status;
             if (item.completed === true) {
               status = "checked";
@@ -35,50 +39,53 @@ var todoList = function () {
               '<button class="btn-delete"><i class="fa fa-trash fa-2x"></i></button>' +
               "</div>";
 
+            // Push the new item row into the DOM
             itemContainer.innerHTML += itemHTML;
           });
+          // If the request fails, log the error message
         } else {
           console.log(httpRequest.statusText);
         }
       }
     };
+
     httpRequest.onerror = function () {
       console.log(httpRequest.statusText);
     };
+    // GET request to retrieve all items in task list
     httpRequest.open(
       "GET",
       "https://altcademy-to-do-list-api.herokuapp.com/tasks?api_key=170"
     );
     httpRequest.send();
   };
+
   populateList();
 
+  // Once the window loads all list items into the DOM, add event listeners
   window.addEventListener("load", function () {
     var addButton = document.querySelector("#btn-add");
-    var completeButtons = Array.from(
-      document.querySelectorAll("input.checkbox")
-    );
+    var completeButtons = Array.from(document.querySelectorAll("input.checkbox"));
     var deleteButtons = Array.from(document.querySelectorAll(".btn-delete"));
 
-    // Function for marking task complete
+    // markComplete Function - toggles between an item being complete or active
     var markComplete = function (e) {
-      // Retrieve the DOM elements corresponding API id
+      // Retrieve the data-attribute that contains corresponding API id
       var itemID = this.parentElement.parentElement.getAttribute(
         "data-attribute"
       );
-      console.log(itemID);
-      console.log(e.target.checked);
       var httpRequest = new XMLHttpRequest();
+
       httpRequest.onload = function () {
         if (httpRequest.readyState === XMLHttpRequest.DONE) {
           if (httpRequest.status === 200) {
-            console.log(httpRequest.responseText);
             populateList();
           } else {
             console.log(httpRequest.statusText);
           }
         }
       };
+
       // Generate request that will toggle the completed and active status to opposite of current state
       if (e.target.checked === true) {
         httpRequest.open(
@@ -105,15 +112,14 @@ var todoList = function () {
       };
     };
 
-    // addItem Function -
+    // addItem Function - adds a new item to the list based on input field value
     var addItem = function () {
       var itemInput = document.querySelector(".todo-input-section input");
-      console.log(itemInput.value);
       var httpRequest = new XMLHttpRequest();
+
       httpRequest.onload = function () {
         if (httpRequest.readyState === XMLHttpRequest.DONE) {
           if (httpRequest.status === 200) {
-            console.log(httpRequest.responseText);
             populateList();
           } else {
             console.log(httpRequest.statusText);
@@ -121,12 +127,12 @@ var todoList = function () {
         }
       };
 
+      // Post request to add new item
       httpRequest.open(
         "POST",
         "https://altcademy-to-do-list-api.herokuapp.com/tasks?api_key=170"
       );
       httpRequest.setRequestHeader("Content-Type", "application/json");
-
       httpRequest.send(
         JSON.stringify({
           task: {
@@ -134,28 +140,22 @@ var todoList = function () {
           },
         })
       );
+
       httpRequest.onerror = function () {
         console.log(httpRequest.statusText);
       };
-
-      populateList();
-
-      // Clear input value
-      itemInput.value = "";
     };
+
     // removeItem Function - remove todo item
     var removeItem = function (e) {
-      console.log("delete");
 
       // Retrieve the DOM elements corresponding API id
       var itemID = this.parentElement.getAttribute("data-attribute");
-      console.log(itemID);
-
       var httpRequest = new XMLHttpRequest();
+
       httpRequest.onload = function () {
         if (httpRequest.readyState === XMLHttpRequest.DONE) {
           if (httpRequest.status === 200) {
-            console.log(httpRequest.responseText);
             populateList();
           } else {
             console.log(httpRequest.statusText);
@@ -179,6 +179,10 @@ var todoList = function () {
     // Event Handler for Add Button - add new item to list if input field is populated
     addButton.addEventListener("click", function (e) {
       addItem();
+      e.preventDefault();
+
+      // Clear input value once new item has been added to the list
+      document.querySelector(".todo-input-section input").value = "";
     });
 
     // Event Listener for Complete Buttons
@@ -193,4 +197,5 @@ var todoList = function () {
   });
 };
 
+// Run to-do list
 todoList();

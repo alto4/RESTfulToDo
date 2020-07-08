@@ -1,17 +1,14 @@
 /* 
   Color Palette 
-  i) #1A1A1D
-  ii) #4E4E50
-  iii)#6F2232
-  iv) #950740
-  v) #C3073F;
-   */
+  i) #1A1A1D, #4E4E50, #6F2232, #950740, #C3073F;  
+*/
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -22,7 +19,6 @@ body {
   width: 100%;
   height: 100%;
   justify-content: center;
-
 }
 
 .container {
@@ -35,7 +31,7 @@ h1 {
   text-decoration: underline;
   text-decoration-color: #C3073F;
   padding: 2rem;
-  transform: skewY(-2deg)
+  transform: skewY(-2deg);
 }
 
 .todo-list {
@@ -72,7 +68,7 @@ input.task-input {
 
 .item-container {
   border-top: 5px solid #4E4E50;
-  margin: 0
+  margin: 0;
 }
 
 .item {
@@ -81,7 +77,7 @@ input.task-input {
   align-items: center;
   padding: 1rem;
   font-size: 22px;
-  width: 92%;
+  width: 100%;
   border-bottom: 1px solid #4E4E50;
 }
 
@@ -122,6 +118,7 @@ span.checked {
   cursor: pointer;
 }
 
+/* Mobile Device Styles */
 @media(max-width: 540px) {
   .container {
     width: 90%;
