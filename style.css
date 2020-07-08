@@ -87,7 +87,11 @@ input {
 
 .item:last-of-type {
   border-bottom: none;
+}
 
+span.checked {
+  text-decoration-line: line-through;
+  text-decoration-color: #C3073F;
 }
 
 .btn-delete {
